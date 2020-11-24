@@ -120,49 +120,90 @@ void initGrille(int tailleLigne,int tailleColonne, int tailleLigne_min, int tail
 
 }
 
+void InitTabAffichage(int tailleLigne,int tailleColonne,int donneeRien, int tabAffichage[][tailleColonne+1]){
 
+    int i;
+    int j;
+
+
+    for(i=0;i<tailleLigne+1;i++){
+        for(j=0;j<tailleColonne+1;j++){
+
+            tabAffichage[i][j]=donneeRien;
+        }
+    }
+
+    //on met en place les graduations ligne et colonne
+    for(i=0;i<tailleColonne;i++){
+        tabAffichage[0][i]=i;
+    }
+    for(i=0;i<tailleColonne;i++){
+        tabAffichage[i][0]=i;
+    }
+}
 
 
 
 
 
 //Affichage------------------------------------------------------------------------
-void AfficherInstructions(int *etatJeu){
+void AfficherInstructions(int etatJeu, int nbDebut, int nbMilieu){
 //BUT : afficher les différentes instructions du jeu ->message d'accueil, entrer deux coords
 //ENTREE: etatDujeu : 0 est le début, 1 choix coords
 //SORTIE: rien
 
-    switch(*etatJeu){
 
-        case 0:
-             printf("Bienvenue dans le jeu du demineur, arriverez-vous a eviter les mines ?\n\n");
-        break;
-        case 1:
-             printf("Veuillez entrer les coordonnees de la case sur laquelle vous souhaitez aller : (chiffre entre 1 et 9)\ligne puis colonne\n");
-        break;
+    if (etatJeu==nbDebut){
+        printf("Bienvenue dans le jeu du demineur, arriverez-vous a eviter les mines ? (entree pour continuer)\n\n");
+        getchar();
+        system("cls");
+    }
+    if(etatJeu==nbMilieu){
+        printf("Veuillez entrer les coordonnees de la case sur laquelle vous souhaitez aller : (chiffre entre 1 et 9)\ligne puis colonne\n");
     }
 }
 
-void CondFinPartie(int *etatJeu){
+
+
+void CondFinPartie(int etatJeu, int nbDefaite, int nbVictoire){
 //BUT : Afficher les messages victoire ou défaite
 //ENTREE:etatDuJeu --> -2 pour la défaite et 2 pour la victoire
 //SORTIE:rien
 
+    if(etatJeu==nbDefaite){
+        printf("\n\nVous avez perdu la partie. Veuillez appuyer sur entree pour quitter le jeu");
+    }
+    if(etatJeu==nbVictoire){
+        printf("\n\nFélicitation vous avez gagne la partie");
+    }
 }
-void AffichageGrille(int tailleLigne_prcd, int tailleColonne_prcd, int tabGrille_prcd[][tailleColonne_prcd]){
+
+
+
+void AffichageGrille(int tailleLigne, int tailleColonne,int numRien,int numMine, char carRien, int tabAffichage[][tailleColonne+1]){
 //BUT :Afficher la grille : met à jour graphiquement la grille : cases cachées, nb
 //ENTREE: tabGrille
 //SORTIE:rien
 
+
     int i;
     int j;
-    /*
-    for(i=0;i<;i++){
-        for(j=0;j<;j++){
-            switch case(){
 
+        for(i=0;i<tailleLigne+1;i++){
+            for(j=0;j<tailleColonne+1;j++){
+
+                if((tabAffichage[i][j]==numRien)||(tabAffichage[i][j]==numMine)){
+                    printf("%c",carRien);
+                }
+                else{
+                    printf("%d",tabAffichage[i][j]);
+                }
+
+            }
+            printf("\n");
         }
-    }*/
+
+
 }
 
 
@@ -179,11 +220,14 @@ void SaisieCoords(int *x, int *y,int tailleLigne,int tailleColonne, int tailleLi
         scanf("%d",&*x);
         printf("Deuxieme coordoonnee :");
         scanf("%d",&*y);
+        printf("\n");
         if((*x<tailleLigne_min) || (*x>=tailleLigne) || (*y<tailleColonne_min) || (*y>=tailleColonne)){
             printf("Erreur, au moins une des coordoonnee n'est pas valable. Veuillez reessayer\n\n");
         }
 
     }while((*x<tailleLigne_min) || (*x>=tailleLigne) || (*y<tailleColonne_min) || (*y>=tailleColonne));
+
+    system("cls");
 }
 
 
@@ -191,26 +235,28 @@ void SaisieCoords(int *x, int *y,int tailleLigne,int tailleColonne, int tailleLi
 
 
 //Calculs--------------------------------------------------------------------------
-void VerifierCaseChoisie(){
-}
-void ConsequenceCaseChoisie(int *etatJeu,int nbDefaite, int x, int y, int numMine, int tailleColonne, int tabGrille_prcd[][tailleColonne]){
+
+void ConsequenceCaseChoisie(int *etatJeu,int nbDefaite, int nbVictoire, int x, int y, int numMine,int *cptCases_Rest, int tailleColonne, int tabGrille_prcd[][tailleColonne], int tabAffichage[][tailleColonne+1]){
 //BUT:indiquer au joueur s'il est tombé sur une mine ou non, et modifier les paramètres en conséquence
 //ENTREE:etatJeu, numMine, tabGrille, coords x et y choisi préablement par le joueur
 //SORTIE:etatJeu qui soit reste à 1 pour les choix coords, soit passe à -2 car mine, soit 2 pour la victoire
 
 
-    //VerifierCaseChoisie()
-
-
     if(tabGrille_prcd[x][y]==numMine){
-        printf("BOOOOOOOOOOM, KABOOOOOOOOOM !!!!!!!!!!! Malheureusement vous etes tombe sur une mine\n");
+        printf("BOOOOOOOOOOM, KABOOOOOOOOOM !!!!!!!!!!! Malheureusement vous etes tombe sur une mine (entree pour continuer)\n\n");
         *etatJeu=nbDefaite;
     }
-  /*  else if(){
-        toutes cases trouvées
-    }*/
-    else{
-        printf("Vous avez de la chance, vous n etes pas tombe sur une mine\n");
+    else if(*cptCases_Rest==0){
+       // toutes cases trouvées
+        printf("Vous venez de decouvrir la derniere case (entree pour continuer)\n\n");
+        *etatJeu=nbVictoire;
     }
+    else{
+        *cptCases_Rest=*cptCases_Rest-1;
+        tabAffichage[x+1][y+1]=tabGrille_prcd[x][y];
+        printf("Vous avez de la chance, vous n etes pas tombe sur une mine\n");
+        printf("Il y a %d mines autour de la case selectionee \n\n",tabGrille_prcd[x][y]);
+    }
+    getchar();
 
 }

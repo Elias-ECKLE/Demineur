@@ -11,15 +11,17 @@
 	<stdio.h>
 	<stdlib.h>
 
-1606224338 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\main.c
+1606244045 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\main.c
 	"define.h"
 
-1606222946 c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\define.h
+1606243715 c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\define.h
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<string.h>
+	<windows.h>
 
-1606224661 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\methodes.c
+1606243943 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\methodes.c
 	"define.h"
 	<stdio.h>
 	<stdlib.h>

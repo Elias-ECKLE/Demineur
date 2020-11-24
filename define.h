@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <windows.h> //biblio pr gotoxyd
 
 
 /*FEATURES
@@ -18,13 +20,13 @@
 
 //PROTOTYPES :
 
-extern void AfficherInstructions(int *etatJeu);
+extern void AfficherInstructions(int etatJeu, int nbDebut, int nbMilieu);
 extern void SaisieCoords(int *x, int *y,int tailleLigne,int tailleColonne, int tailleLigne_min, int tailleColonne_min);
-extern void CondFinPartie(int *etatJeu);
+extern void CondFinPartie(int etatJeu,int,int);
 extern void initGrille(int tailleLigne,int tailleColonne, int tailleLigne_min, int tailleColonne_min, int nbMines, int numRien, int numMine, int tabGrille_prcd[][tailleColonne]);
-extern void AffichageGrille(int tailleLigne_prcd, int tailleColonne_prcd, int tabGrille_prcd[][tailleColonne_prcd]);
+extern void AffichageGrille(int tailleLigne, int tailleColonne,int numRien,int numMine, char carRien, int tabAffichage[][tailleColonne+1]);
 extern void verif_casesAutour(int caseVoisineSelect,int x,int y, int numMine,int *cptMines,int tailleLigne,int tailleColonne, int tailleLigne_min, int tailleColonne_min,int tabGrille[][tailleColonne]);
-extern void ConsequenceCaseChoisie(int *etatJeu,int nbDefaite, int x, int y, int numMine, int tailleColonne, int tabGrille_prcd[][tailleColonne]);
+extern void ConsequenceCaseChoisie(int *etatJeu,int nbDefaite, int nbVictoire, int x, int y, int numMine,int *cptCases_Rest, int tailleColonne, int tabGrille_prcd[][tailleColonne], int tabAffichage[][tailleColonne+1]);
 
 
 
