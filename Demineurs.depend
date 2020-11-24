@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1606154234 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\main.c
+	"define.h"
+
+1606154322 c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\define.h
+	<stdio.h>
+	<stdlib.h>
+
+1606154346 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\methodes.c
+	"define.h"
+	<stdio.h>
+	<stdlib.h>
+
+1606224338 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\main.c
+	"define.h"
+
+1606222946 c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\define.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1606224661 source:c:\algoracine\algoracinef2\codeblockf2\exos\semaine1_cycle1_2020-2021\demineur\demineurs\demineur\methodes.c
+	"define.h"
+	<stdio.h>
+	<stdlib.h>
+
